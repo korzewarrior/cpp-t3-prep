@@ -10,6 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/cpp.min.js"></script>
+    <meta name="theme-color" content="#2c3e50">
 </head>
 <body>
     <div class="container">
@@ -21,21 +22,34 @@
             <nav id="sidebar">
                 <div class="sidebar-header">
                     <h2>Study Path</h2>
+                    <button id="toggle-sidebar" class="mobile-only">≡</button>
                 </div>
                 <ul class="topics-list">
-                    <li><a href="#" data-file="TestIII_Topics_Overview.md"><span class="topic-number">0</span> Test III Topics Overview</a></li>
-                    <li><a href="#" data-file="1_OOP_Basics.md"><span class="topic-number">1</span> OOP Basics</a></li>
-                    <li><a href="#" data-file="2_CPP_IO.md"><span class="topic-number">2</span> C++ Input/Output</a></li>
-                    <li><a href="#" data-file="3_Inheritance_Polymorphism.md"><span class="topic-number">3</span> Inheritance & Polymorphism</a></li>
-                    <li><a href="#" data-file="4_MultiFile_Classes.md"><span class="topic-number">4</span> Multi-file Classes</a></li>
-                    <li><a href="#" data-file="5_Templates_STL.md"><span class="topic-number">5</span> Templates & STL</a></li>
-                    <li><a href="#" data-file="6_Smart_Pointers.md"><span class="topic-number">6</span> Smart Pointers</a></li>
-                    <li><a href="#" data-file="7_Algorithms_BFS_MinHeap.md"><span class="topic-number">7</span> Algorithms (BFS & Min Heap)</a></li>
-                    <li><a href="#" data-file="8_Operator_Overloading.md"><span class="topic-number">8</span> Operator Overloading</a></li>
+                    <li><a href="#" data-file="Overview.md"><span class="topic-number">0</span> Topics Overview</a></li>
+                    <li><a href="#" data-file="1-OOP.md"><span class="topic-number">1</span> OOP Basics</a></li>
+                    <li><a href="#" data-file="2-IO.md"><span class="topic-number">2</span> C++ I/O</a></li>
+                    <li><a href="#" data-file="3-Inheritance.md"><span class="topic-number">3</span> Inheritance & Polymorphism</a></li>
+                    <li><a href="#" data-file="4-MultiFile.md"><span class="topic-number">4</span> Multi-file Classes</a></li>
+                    <li><a href="#" data-file="5-Templates.md"><span class="topic-number">5</span> Templates & STL</a></li>
+                    <li><a href="#" data-file="6-Pointers.md"><span class="topic-number">6</span> Smart Pointers</a></li>
+                    <li><a href="#" data-file="7-Algorithms.md"><span class="topic-number">7</span> Algorithms</a></li>
+                    <li><a href="#" data-file="8-Operators.md"><span class="topic-number">8</span> Operator Overloading</a></li>
                     <li class="divider"></li>
-                    <li><a href="#" data-file="CPP_Study_Guide.md"><span class="topic-number">★</span> Complete Study Guide</a></li>
-                    <li><a href="#" data-file="CPP_Test3_Cheatsheet.md"><span class="topic-number">☆</span> Test 3 Cheatsheet</a></li>
+                    <li><a href="#" data-file="0-StudyGuide.md"><span class="topic-number">★</span> Complete Study Guide</a></li>
+                    <li><a href="#" data-file="CheatSheet.md"><span class="topic-number">☆</span> Quick Reference</a></li>
                 </ul>
+                <div class="sidebar-footer">
+                    <div class="progress-info">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 0%"></div>
+                        </div>
+                        <p class="progress-text">Topic <span id="current-topic">0</span> of 9</p>
+                    </div>
+                    <div class="keyboard-shortcuts">
+                        <span title="Previous Topic">←</span>
+                        <span title="Next Topic">→</span>
+                    </div>
+                </div>
             </nav>
             <main id="content-area">
                 <div id="markdown-content"></div>
@@ -49,6 +63,7 @@
         </div>
         <footer>
             <p>CSE240 Test 3 Preparation Materials</p>
+            <p class="credits">Designed for easy navigation and learning</p>
         </footer>
     </div>
     <script src="script.js"></script>
