@@ -6,6 +6,7 @@
 }
 
 :root {
+    /* Light theme colors */
     --primary: #2c3e50;
     --primary-light: #3a5269;
     --secondary: #3498db;
@@ -23,13 +24,42 @@
     --header-height: 4rem;
     --sidebar-width: 280px;
     --content-max-width: 900px;
+    --background: white;
+    --text: #2c3e50;
+    --markdown-bg: white;
+    --blockquote-bg: rgba(52, 152, 219, 0.1);
+    --toc-bg: var(--light);
+}
+
+/* Dark theme colors */
+body.dark-mode {
+    --primary: #375a7f;
+    --primary-light: #4a6f94;
+    --secondary: #2a9fd6;
+    --secondary-light: #5faee3;
+    --accent: #e74c3c;
+    --success: #00bc8c;
+    --light: #222;
+    --dark: #f8f9fa;
+    --gray: #adb5bd;
+    --light-gray: #444;
+    --border: #444;
+    --code-bg: #121212;
+    --shadow: rgba(0, 0, 0, 0.2);
+    --shadow-darker: rgba(0, 0, 0, 0.3);
+    --background: #2c3e50;
+    --text: #f8f9fa;
+    --markdown-bg: #1a2530;
+    --blockquote-bg: rgba(42, 159, 214, 0.15);
+    --toc-bg: #1a2530;
 }
 
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     line-height: 1.6;
-    color: var(--dark);
+    color: var(--text);
     background-color: var(--light);
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .container {
@@ -48,6 +78,20 @@ header {
     position: sticky;
     top: 0;
     z-index: 100;
+    transition: background 0.3s ease;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.title-container {
+    text-align: left;
 }
 
 header h1 {
@@ -62,6 +106,71 @@ header h1 {
     margin-bottom: 0;
 }
 
+/* Theme toggle button */
+.theme-toggle {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: background-color 0.3s ease;
+}
+
+.theme-toggle:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.theme-toggle-icon {
+    position: relative;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: transparent;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.theme-toggle-icon::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+    transform: scale(1);
+}
+
+.theme-toggle-icon::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    width: 100%;
+    height: 100%;
+    background-color: var(--primary);
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+    transform: translateX(100%);
+}
+
+.dark-mode .theme-toggle-icon::before {
+    transform: scale(0.5);
+}
+
+.dark-mode .theme-toggle-icon::after {
+    transform: translateX(0);
+}
+
 .content-wrapper {
     display: flex;
     flex: 1;
@@ -71,7 +180,7 @@ header h1 {
 /* Sidebar navigation */
 #sidebar {
     width: var(--sidebar-width);
-    background-color: white;
+    background-color: var(--background);
     box-shadow: 2px 0 10px var(--shadow);
     padding: 0;
     overflow-y: auto;
@@ -81,22 +190,25 @@ header h1 {
     z-index: 90;
     display: flex;
     flex-direction: column;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .sidebar-header {
     padding: 1.25rem 1.5rem;
     border-bottom: 1px solid var(--border);
-    background-color: white;
+    background-color: var(--background);
     display: flex;
     justify-content: space-between;
     align-items: center;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .sidebar-header h2 {
     font-size: 1.25rem;
     font-weight: 600;
-    color: var(--primary);
+    color: var(--text);
     margin: 0;
+    transition: color 0.3s ease;
 }
 
 .mobile-only {
@@ -119,12 +231,13 @@ header h1 {
     height: 1px;
     background-color: var(--border);
     margin: 1rem 1.5rem;
+    transition: background-color 0.3s ease;
 }
 
 .topics-list a {
     display: flex;
     align-items: center;
-    color: var(--dark);
+    color: var(--text);
     text-decoration: none;
     padding: 0.75rem 1.5rem;
     transition: all 0.2s ease;
@@ -183,6 +296,7 @@ header h1 {
     border-top: 1px solid var(--border);
     font-size: 0.875rem;
     color: var(--gray);
+    transition: border-color 0.3s ease, color 0.3s ease;
 }
 
 .progress-info {
@@ -195,19 +309,21 @@ header h1 {
     border-radius: 3px;
     overflow: hidden;
     margin-bottom: 0.5rem;
+    transition: background-color 0.3s ease;
 }
 
 .progress-fill {
     height: 100%;
     background-color: var(--secondary);
     border-radius: 3px;
-    transition: width 0.3s ease;
+    transition: width 0.3s ease, background-color 0.3s ease;
 }
 
 .progress-text {
     font-size: 0.75rem;
     color: var(--gray);
     text-align: center;
+    transition: color 0.3s ease;
 }
 
 .keyboard-shortcuts {
@@ -227,6 +343,7 @@ header h1 {
     margin: 0 0.25rem;
     font-size: 0.875rem;
     color: var(--gray);
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Main content area */
@@ -236,15 +353,17 @@ main {
     overflow-y: auto;
     background-color: var(--light);
     position: relative;
+    transition: background-color 0.3s ease;
 }
 
 #markdown-content {
     max-width: var(--content-max-width);
     margin: 0 auto 2rem auto;
-    background-color: white;
+    background-color: var(--markdown-bg);
     padding: 2.5rem;
     border-radius: 8px;
     box-shadow: 0 2px 12px var(--shadow);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 /* Code blocks and pre */
@@ -255,6 +374,7 @@ pre {
     overflow-x: auto;
     margin: 1.5rem 0;
     position: relative;
+    transition: background-color 0.3s ease;
 }
 
 pre::before {
@@ -272,9 +392,10 @@ pre::before {
 code {
     font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
     font-size: 0.9em;
-    background-color: #f5f5f5;
+    background-color: var(--light-gray);
     padding: 0.2rem 0.4rem;
     border-radius: 3px;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 pre code {
@@ -291,20 +412,23 @@ pre code {
 #markdown-content h4 {
     margin-top: 2rem;
     margin-bottom: 1rem;
-    color: var(--primary);
+    color: var(--text);
     font-weight: 600;
+    transition: color 0.3s ease;
 }
 
 #markdown-content h1 {
     font-size: 2.25rem;
     padding-bottom: 0.5rem;
     border-bottom: 2px solid var(--light-gray);
+    transition: border-color 0.3s ease;
 }
 
 #markdown-content h2 {
     font-size: 1.75rem;
     padding-bottom: 0.5rem;
     border-bottom: 1px solid var(--light-gray);
+    transition: border-color 0.3s ease;
 }
 
 #markdown-content h3 {
@@ -318,11 +442,15 @@ pre code {
 #markdown-content p {
     margin-bottom: 1.25rem;
     line-height: 1.7;
+    color: var(--text);
+    transition: color 0.3s ease;
 }
 
 #markdown-content ul, 
 #markdown-content ol {
     margin: 1rem 0 1.5rem 2rem;
+    color: var(--text);
+    transition: color 0.3s ease;
 }
 
 #markdown-content li {
@@ -333,8 +461,9 @@ pre code {
     border-left: 4px solid var(--secondary);
     padding: 1rem;
     margin: 1.5rem 0;
-    background-color: rgba(52, 152, 219, 0.1);
+    background-color: var(--blockquote-bg);
     border-radius: 0 4px 4px 0;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 #markdown-content a {
@@ -355,6 +484,7 @@ pre code {
     border-radius: 4px;
     margin: 1.5rem 0;
     box-shadow: 0 2px 6px var(--shadow);
+    transition: box-shadow 0.3s ease;
 }
 
 /* Progress navigation */
@@ -402,6 +532,7 @@ footer {
     padding: 1.5rem;
     text-align: center;
     font-size: 0.9rem;
+    transition: background-color 0.3s ease;
 }
 
 .credits {
@@ -412,12 +543,13 @@ footer {
 
 /* Table of contents styling */
 .table-of-contents {
-    background-color: var(--light);
+    background-color: var(--toc-bg);
     border-radius: 8px;
     padding: 1.5rem;
     margin: 1.5rem 0 2rem;
     border: 1px solid var(--border);
     position: relative;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .table-of-contents::before {
@@ -425,9 +557,28 @@ footer {
     position: absolute;
     top: -12px;
     left: 20px;
-    background-color: white;
+    background-color: var(--markdown-bg);
     padding: 0 8px;
     font-size: 1.2rem;
+    transition: background-color 0.3s ease;
+}
+
+/* Additional dark mode specific adjustments */
+.dark-mode .copy-button {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.dark-mode .copy-button:hover {
+    background-color: rgba(255, 255, 255, 0.25);
+}
+
+.dark-mode code {
+    color: #e6e6e6;
+}
+
+.dark-mode .table-of-contents h2,
+.dark-mode .table-of-contents a {
+    color: var(--text);
 }
 
 /* Loading spinner and animations */
@@ -502,6 +653,16 @@ footer {
         max-width: 100%;
         text-align: center;
         justify-content: center;
+    }
+    
+    .header-content {
+        flex-direction: column;
+    }
+    
+    .theme-toggle {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
     }
 }
 

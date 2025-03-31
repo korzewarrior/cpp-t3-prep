@@ -7,6 +7,42 @@ document.addEventListener('DOMContentLoaded', function() {
     const toggleButton = document.getElementById('toggle-sidebar');
     const progressFill = document.querySelector('.progress-fill');
     const currentTopicDisplay = document.getElementById('current-topic');
+    const themeToggleButton = document.getElementById('theme-toggle');
+    
+    // Theme toggle functionality
+    function initThemeToggle() {
+        // Check for saved theme preference
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            document.body.classList.add('dark-mode');
+            updateThemeColor('#1a2530'); // Update the theme-color meta tag for dark mode
+        }
+        
+        // Toggle theme when button is clicked
+        themeToggleButton.addEventListener('click', function() {
+            document.body.classList.toggle('dark-mode');
+            
+            // Save theme preference to localStorage
+            if (document.body.classList.contains('dark-mode')) {
+                localStorage.setItem('theme', 'dark');
+                updateThemeColor('#1a2530');
+            } else {
+                localStorage.setItem('theme', 'light');
+                updateThemeColor('#2c3e50');
+            }
+        });
+    }
+    
+    // Update theme-color meta tag for browser UI
+    function updateThemeColor(color) {
+        const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+        if (metaThemeColor) {
+            metaThemeColor.setAttribute('content', color);
+        }
+    }
+    
+    // Initialize theme toggle
+    initThemeToggle();
     
     // Updated file names with cleaner naming convention
     const orderedTopics = [
@@ -142,6 +178,11 @@ document.addEventListener('DOMContentLoaded', function() {
         // Right arrow key for next topic
         else if (e.key === 'ArrowRight' && !nextButton.disabled) {
             nextButton.click();
+        }
+        // 'D' key for dark mode toggle
+        else if (e.key === 'd' && (e.ctrlKey || e.metaKey)) {
+            e.preventDefault();
+            themeToggleButton.click();
         }
     });
     
@@ -460,7 +501,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         .table-of-contents {
-            background-color: var(--light);
+            background-color: var(--toc-bg);
             border-radius: 8px;
             padding: 1.5rem;
             margin: 2rem 0;
@@ -491,7 +532,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         .table-of-contents a {
-            color: var(--primary);
+            color: var(--text);
             text-decoration: none;
             display: inline-block;
             padding: 0.25rem 0;
@@ -511,6 +552,29 @@ document.addEventListener('DOMContentLoaded', function() {
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
+        }
+        
+        /* Theme toggle tooltip */
+        .theme-toggle::after {
+            content: "Toggle Dark Mode (Ctrl+D)";
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.2s ease, visibility 0.2s ease;
+        }
+        
+        .theme-toggle:hover::after {
+            opacity: 1;
+            visibility: visible;
         }
     `;
     document.head.appendChild(style);
