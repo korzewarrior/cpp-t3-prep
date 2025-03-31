@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>C++ Test III Study Guide</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/vs2015.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/cpp.min.js"></script>
@@ -14,28 +15,36 @@
     <div class="container">
         <header>
             <h1>C++ Test III Study Guide</h1>
+            <p class="subtitle">A comprehensive guide to mastering C++ concepts</p>
         </header>
         <div class="content-wrapper">
             <nav id="sidebar">
                 <div class="sidebar-header">
-                    <h2>Topics</h2>
+                    <h2>Study Path</h2>
                 </div>
                 <ul class="topics-list">
-                    <li><a href="#" data-file="TestIII_Topics_Overview.md">Test III Topics Overview</a></li>
-                    <li><a href="#" data-file="1_OOP_Basics.md">OOP Basics</a></li>
-                    <li><a href="#" data-file="2_CPP_IO.md">C++ Input/Output</a></li>
-                    <li><a href="#" data-file="3_Inheritance_Polymorphism.md">Inheritance & Polymorphism</a></li>
-                    <li><a href="#" data-file="4_MultiFile_Classes.md">Multi-file Classes</a></li>
-                    <li><a href="#" data-file="5_Templates_STL.md">Templates & STL</a></li>
-                    <li><a href="#" data-file="6_Smart_Pointers.md">Smart Pointers</a></li>
-                    <li><a href="#" data-file="7_Algorithms_BFS_MinHeap.md">Algorithms (BFS & Min Heap)</a></li>
-                    <li><a href="#" data-file="8_Operator_Overloading.md">Operator Overloading</a></li>
-                    <li><a href="#" data-file="CPP_Study_Guide.md">Complete Study Guide</a></li>
-                    <li><a href="#" data-file="CPP_Test3_Cheatsheet.md">Test 3 Cheatsheet</a></li>
+                    <li><a href="#" data-file="TestIII_Topics_Overview.md"><span class="topic-number">0</span> Test III Topics Overview</a></li>
+                    <li><a href="#" data-file="1_OOP_Basics.md"><span class="topic-number">1</span> OOP Basics</a></li>
+                    <li><a href="#" data-file="2_CPP_IO.md"><span class="topic-number">2</span> C++ Input/Output</a></li>
+                    <li><a href="#" data-file="3_Inheritance_Polymorphism.md"><span class="topic-number">3</span> Inheritance & Polymorphism</a></li>
+                    <li><a href="#" data-file="4_MultiFile_Classes.md"><span class="topic-number">4</span> Multi-file Classes</a></li>
+                    <li><a href="#" data-file="5_Templates_STL.md"><span class="topic-number">5</span> Templates & STL</a></li>
+                    <li><a href="#" data-file="6_Smart_Pointers.md"><span class="topic-number">6</span> Smart Pointers</a></li>
+                    <li><a href="#" data-file="7_Algorithms_BFS_MinHeap.md"><span class="topic-number">7</span> Algorithms (BFS & Min Heap)</a></li>
+                    <li><a href="#" data-file="8_Operator_Overloading.md"><span class="topic-number">8</span> Operator Overloading</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#" data-file="CPP_Study_Guide.md"><span class="topic-number">★</span> Complete Study Guide</a></li>
+                    <li><a href="#" data-file="CPP_Test3_Cheatsheet.md"><span class="topic-number">☆</span> Test 3 Cheatsheet</a></li>
                 </ul>
             </nav>
             <main id="content-area">
                 <div id="markdown-content"></div>
+                <div class="progress-indicator">
+                    <div class="progress-nav">
+                        <button id="prev-topic" class="nav-button" disabled>Previous Topic</button>
+                        <button id="next-topic" class="nav-button">Next Topic</button>
+                    </div>
+                </div>
             </main>
         </div>
         <footer>
