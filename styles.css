@@ -6,11 +6,11 @@
 }
 
 :root {
-    /* Light theme colors */
-    --primary: #2c3e50;
-    --primary-light: #3a5269;
-    --secondary: #3498db;
-    --secondary-light: #5faee3;
+    /* Light theme colors - updated with less "weird blue" */
+    --primary: #34495e;
+    --primary-light: #4a6177;
+    --secondary: #16a085;
+    --secondary-light: #1abc9c;
     --accent: #e74c3c;
     --success: #27ae60;
     --light: #f8f9fa;
@@ -27,31 +27,31 @@
     --background: white;
     --text: #2c3e50;
     --markdown-bg: white;
-    --blockquote-bg: rgba(52, 152, 219, 0.1);
+    --blockquote-bg: rgba(22, 160, 133, 0.1);
     --toc-bg: var(--light);
 }
 
-/* Dark theme colors */
+/* Dark theme colors - updated with better contrast */
 body.dark-mode {
-    --primary: #375a7f;
-    --primary-light: #4a6f94;
-    --secondary: #2a9fd6;
-    --secondary-light: #5faee3;
-    --accent: #e74c3c;
-    --success: #00bc8c;
-    --light: #222;
+    --primary: #1e272e;
+    --primary-light: #2c3a47;
+    --secondary: #26de81;
+    --secondary-light: #2ecc71;
+    --accent: #ff6b6b;
+    --success: #20bf6b;
+    --light: #131517;
     --dark: #f8f9fa;
     --gray: #adb5bd;
-    --light-gray: #444;
+    --light-gray: #333;
     --border: #444;
-    --code-bg: #121212;
+    --code-bg: #0d0d0d;
     --shadow: rgba(0, 0, 0, 0.2);
     --shadow-darker: rgba(0, 0, 0, 0.3);
-    --background: #2c3e50;
+    --background: #1e272e;
     --text: #f8f9fa;
-    --markdown-bg: #1a2530;
-    --blockquote-bg: rgba(42, 159, 214, 0.15);
-    --toc-bg: #1a2530;
+    --markdown-bg: #141b1f;
+    --blockquote-bg: rgba(38, 222, 129, 0.1);
+    --toc-bg: #141b1f;
 }
 
 body {
@@ -168,7 +168,7 @@ body {
 }
 
 .topics-list a:hover {
-    background-color: rgba(52, 152, 219, 0.1);
+    background-color: rgba(22, 160, 133, 0.1);
     color: var(--secondary);
 }
 
@@ -244,14 +244,22 @@ body {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 24px;
-    height: 24px;
+    width: 28px;
+    height: 28px;
     background-color: var(--light-gray);
     border-radius: 4px;
     margin: 0 0.25rem;
     font-size: 0.875rem;
-    color: var(--gray);
-    transition: background-color 0.3s ease, color 0.3s ease;
+    color: var(--text);
+    transition: all 0.2s ease;
+    cursor: pointer;
+    box-shadow: 0 1px 3px var(--shadow);
+}
+
+.keyboard-shortcuts span:hover {
+    background-color: var(--secondary);
+    color: white;
+    transform: translateY(-1px);
 }
 
 /* Theme toggle container */
@@ -261,31 +269,34 @@ body {
     margin-bottom: 1rem;
 }
 
-/* Theme toggle button */
+/* Theme toggle button - improved visibility in dark mode */
 .theme-toggle {
-    background: none;
-    border: none;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--border);
     color: var(--text);
     cursor: pointer;
-    width: 40px;
-    height: 40px;
+    width: 42px;
+    height: 42px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px var(--shadow);
 }
 
 .theme-toggle:hover {
-    background-color: rgba(52, 152, 219, 0.1);
+    background-color: var(--secondary);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px var(--shadow-darker);
 }
 
 .theme-toggle-icon {
     position: relative;
     display: inline-block;
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
     border-radius: 50%;
     background-color: transparent;
     overflow: hidden;
@@ -318,12 +329,21 @@ body {
     transform: translateX(100%);
 }
 
+.dark-mode .theme-toggle {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: var(--secondary);
+}
+
 .dark-mode .theme-toggle-icon::before {
     transform: scale(0.5);
 }
 
 .dark-mode .theme-toggle-icon::after {
     transform: translateX(0);
+}
+
+.dark-mode .theme-toggle:hover {
+    background-color: var(--secondary);
 }
 
 /* Credits section */

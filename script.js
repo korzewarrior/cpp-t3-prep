@@ -8,6 +8,25 @@ document.addEventListener('DOMContentLoaded', function() {
     const progressFill = document.querySelector('.progress-fill');
     const currentTopicDisplay = document.getElementById('current-topic');
     const themeToggleButton = document.getElementById('theme-toggle');
+    const leftArrow = document.querySelector('.keyboard-shortcuts span[title="Previous Topic"]');
+    const rightArrow = document.querySelector('.keyboard-shortcuts span[title="Next Topic"]');
+    
+    // Make the sidebar arrow buttons functional
+    if (leftArrow) {
+        leftArrow.addEventListener('click', function() {
+            if (!prevButton.disabled) {
+                prevButton.click();
+            }
+        });
+    }
+    
+    if (rightArrow) {
+        rightArrow.addEventListener('click', function() {
+            if (!nextButton.disabled) {
+                nextButton.click();
+            }
+        });
+    }
     
     // Theme toggle functionality
     function initThemeToggle() {
@@ -15,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const savedTheme = localStorage.getItem('theme');
         if (savedTheme === 'dark') {
             document.body.classList.add('dark-mode');
-            updateThemeColor('#1a2530'); // Update the theme-color meta tag for dark mode
+            updateThemeColor('#1e272e'); // Update the theme-color meta tag for dark mode
         }
         
         // Toggle theme when button is clicked
@@ -25,10 +44,10 @@ document.addEventListener('DOMContentLoaded', function() {
             // Save theme preference to localStorage
             if (document.body.classList.contains('dark-mode')) {
                 localStorage.setItem('theme', 'dark');
-                updateThemeColor('#1a2530');
+                updateThemeColor('#1e272e');
             } else {
                 localStorage.setItem('theme', 'light');
-                updateThemeColor('#2c3e50');
+                updateThemeColor('#34495e');
             }
         });
     }
@@ -206,6 +225,17 @@ document.addEventListener('DOMContentLoaded', function() {
             nextButton.innerHTML = `${nextTopicName} →`;
         } else {
             nextButton.textContent = 'Next Topic';
+        }
+        
+        // Update sidebar arrow button states
+        if (leftArrow) {
+            leftArrow.style.opacity = prevButton.disabled ? '0.5' : '1';
+            leftArrow.style.cursor = prevButton.disabled ? 'not-allowed' : 'pointer';
+        }
+        
+        if (rightArrow) {
+            rightArrow.style.opacity = nextButton.disabled ? '0.5' : '1';
+            rightArrow.style.cursor = nextButton.disabled ? 'not-allowed' : 'pointer';
         }
     }
     
@@ -410,7 +440,7 @@ document.addEventListener('DOMContentLoaded', function() {
             width: 40px;
             height: 40px;
             border-radius: 50%;
-            border: 3px solid rgba(52, 152, 219, 0.2);
+            border: 3px solid rgba(22, 160, 133, 0.2);
             border-top-color: var(--secondary);
             animation: spin 1s linear infinite;
             margin-bottom: 1rem;
@@ -552,29 +582,6 @@ document.addEventListener('DOMContentLoaded', function() {
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
-        }
-        
-        /* Theme toggle tooltip */
-        .theme-toggle::after {
-            content: "Toggle Dark Mode (Ctrl+D)";
-            position: absolute;
-            bottom: -30px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: rgba(0, 0, 0, 0.8);
-            color: white;
-            padding: 5px 10px;
-            border-radius: 4px;
-            font-size: 12px;
-            white-space: nowrap;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.2s ease, visibility 0.2s ease;
-        }
-        
-        .theme-toggle:hover::after {
-            opacity: 1;
-            visibility: visible;
         }
     `;
     document.head.appendChild(style);
