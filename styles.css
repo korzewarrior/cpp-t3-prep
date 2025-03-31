@@ -5,6 +5,23 @@
     box-sizing: border-box;
 }
 
+/* Clickable title in sidebar */
+.title-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    transition: transform 0.2s ease;
+}
+
+.title-link:hover {
+    transform: translateX(3px);
+    color: var(--secondary);
+}
+
+.title-link h1 {
+    cursor: pointer;
+}
+
 :root {
     /* Light theme colors - updated with less "weird blue" */
     --primary: #34495e;

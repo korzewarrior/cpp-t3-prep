@@ -10,6 +10,37 @@ document.addEventListener('DOMContentLoaded', function() {
     const themeToggleButton = document.getElementById('theme-toggle');
     const leftArrow = document.querySelector('.keyboard-shortcuts span[title="Previous Topic"]');
     const rightArrow = document.querySelector('.keyboard-shortcuts span[title="Next Topic"]');
+    const titleLink = document.querySelector('.title-link');
+    
+    // Make the title link navigate to the overview page
+    if (titleLink) {
+        titleLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Remove active class from all nav links
+            navLinks.forEach(item => item.classList.remove('active'));
+            
+            // Add active class to the overview link
+            const overviewLink = document.querySelector('.topics-list a[data-file="Overview.md"]');
+            if (overviewLink) {
+                overviewLink.classList.add('active');
+            }
+            
+            // Load the overview content
+            loadMarkdownContent('Overview.md');
+            
+            // Update navigation and progress
+            currentTopicIndex = 0;
+            updateNavigationButtons();
+            updateProgressIndicator();
+            
+            // Update URL hash
+            window.location.hash = 'Overview.md';
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        });
+    }
     
     // Make the sidebar arrow buttons functional
     if (leftArrow) {
